@@ -19,11 +19,7 @@ public interface IPublicacionDAO {
 
     public Comun registrarPublicacionComun(Comun publicacionComun) throws MongoDBException;
 
-<<<<<<< HEAD
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada) throws MongoDBException;
-=======
-    public Anclada registrarPublicacionAnclada(Anclada anclada);
->>>>>>> 335486c334640d89bf733d7c805d9c13f6826427
+    public Anclada registrarPublicacionAnclada(Anclada anclada) throws MongoDBException;
 
     public Comun editarPublicacionComun(Comun publicacionComun) throws MongoDBException;
 
