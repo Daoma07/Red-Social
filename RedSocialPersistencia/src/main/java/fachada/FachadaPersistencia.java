@@ -22,13 +22,13 @@ import java.util.List;
  *
  * @author HP
  */
-public class Fachada implements IFachada {
+public class FachadaPersistencia implements IFachadaPersistencia {
 
     private final IComentarioDAO comentarioDAO;
     private final IPublicacionDAO publicacionDAO;
     private final IUsuarioDAO usuarioDAO;
 
-    public Fachada() {
+    public FachadaPersistencia() {
         IFabricaDAO fabricaDAO = new FabricaDAO();
         this.comentarioDAO = fabricaDAO.crearComentarioDAO();
         this.publicacionDAO = fabricaDAO.crearPublicacionDAO();
@@ -61,8 +61,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public Normal editarPublicacionNormal(Normal publicacionNormal) {
-        return publicacionDAO.editarPublicacionNormal(publicacionNormal);
+    public Comun editarPublicacionComun(Comun publicacionComun) {
+        return publicacionDAO.editarPublicacionComun(publicacionComun);
     }
 
     @Override
@@ -76,8 +76,18 @@ public class Fachada implements IFachada {
     }
 
     @Override
+    public boolean existePublicacion(Publicacion publicacion) {
+        return publicacionDAO.existePublicacion(publicacion);
+    }
+
+    @Override
     public Usuario registrarUsuario(Usuario usuario) {
         return usuarioDAO.registrarUsuario(usuario);
+    }
+
+    @Override
+    public boolean existeUsuario(String avatar, String correo) {
+        return usuarioDAO.existeUsuario(avatar, correo);
     }
 
 }

@@ -15,4 +15,6 @@ public interface IUsuarioDAO {
 
     public Usuario registrarUsuario(Usuario usuario);
 
+    public boolean existeUsuario(String avatar, String correo);
+
 }

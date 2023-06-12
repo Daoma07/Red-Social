@@ -45,7 +45,8 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
-    private boolean existeUsuario(String avatar, String correo) {
+    @Override
+    public boolean existeUsuario(String avatar, String correo) {
         Document filtro = new Document("$or",
                 new Document[]{
                     new Document("avatar", avatar),

@@ -14,7 +14,6 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import dominio.Ancalada;
 import dominio.Comun;
-import dominio.Normal;
 import dominio.Publicacion;
 import interfaces.IPublicacionDAO;
 import java.util.ArrayList;
@@ -62,22 +61,22 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public Normal editarPublicacionNormal(Normal publicacionNormal) {
+    public Comun editarPublicacionComun(Comun publicacionComun) {
         try {
-            ObjectId publicacionId = publicacionNormal.getId();
+            ObjectId publicacionId = publicacionComun.getId();
             Bson filtro = Filters.eq("_id", publicacionId);
-            Bson update = new Document("$set", publicacionNormal);
+            Bson update = new Document("$set", publicacionComun);
             UpdateResult resultado = COLECCION.updateOne(filtro, update);
 
             if (resultado.getModifiedCount() > 0) {
-                System.out.println("Publicación normal editada exitosamente");
-                return publicacionNormal;
+                System.out.println("Publicación comun editada exitosamente");
+                return publicacionComun;
             } else {
-                System.out.println("No se encontró la publicación normal para editar");
+                System.out.println("No se encontró la publicación comun para editar");
                 return null;
             }
         } catch (Exception e) {
-            System.out.println("Error al editar la publicación normal: " + e.getMessage());
+            System.out.println("Error al editar la publicación comun: " + e.getMessage());
             return null;
         }
     }
@@ -115,6 +114,19 @@ public class PublicacionDAO implements IPublicacionDAO {
             }
         } catch (Exception e) {
             System.out.println("Error al eliminar la publicación: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean existePublicacion(Publicacion publicacion) {
+        try {
+            ObjectId publicacionId = publicacion.getId();
+            Bson filtro = Filters.eq("_id", publicacionId);
+            long count = COLECCION.countDocuments(filtro);
+            return count > 0;
+        } catch (Exception e) {
+            System.out.println("Error al verificar la existencia de la publicación: " + e.getMessage());
             return false;
         }
     }

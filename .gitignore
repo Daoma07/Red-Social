@@ -23,3 +23,5 @@
 hs_err_pid*
 replay_pid*
 /RedSocialDominio/target/
+/RedSocialNegocio/target/
+/RedSocialPersistencia/target/

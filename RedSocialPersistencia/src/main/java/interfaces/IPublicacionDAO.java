@@ -7,7 +7,6 @@ package interfaces;
 
 import dominio.Ancalada;
 import dominio.Comun;
-import dominio.Normal;
 import dominio.Publicacion;
 import java.util.List;
 
@@ -21,10 +20,12 @@ public interface IPublicacionDAO {
 
     public Ancalada registrarPublicacionAnclada(Ancalada anclada);
 
-    public Normal editarPublicacionNormal(Normal publicacionNormal);
+    public Comun editarPublicacionComun(Comun publicacionComun);
 
     public List<Publicacion> consultarPublicaciones();
 
     public boolean eliminarPublicacion(Publicacion publicacion);
+
+    public boolean existePublicacion(Publicacion publicacion);
 
 }
