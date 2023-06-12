@@ -12,6 +12,7 @@ import static com.mongodb.client.model.Filters.eq;
 import dominio.Comentario;
 import excepciones.MongoDBException;
 import interfaces.IComentarioDAO;
+import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -34,6 +35,11 @@ public class ComentarioDAO implements IComentarioDAO {
     @Override
     public Comentario registrarComentario(Comentario comentario) throws MongoDBException {
         try {
+            List<String> errores = validarComentario(comentario);
+            if (!errores.isEmpty()) {
+                String mensajeError = String.join(", ", errores);
+                throw new MongoDBException("El comentario no es válido: " + mensajeError);
+            }
             COLECCION.insertOne(comentario);
             return comentario;
         } catch (MongoDBException e) {
@@ -45,6 +51,11 @@ public class ComentarioDAO implements IComentarioDAO {
     @Override
     public boolean eliminarComentario(Comentario comentario) {
         try {
+            List<String> errores = validarComentario(comentario);
+            if (!errores.isEmpty()) {
+                String mensajeError = String.join(", ", errores);
+                throw new MongoDBException("El comentario no es válido: " + mensajeError);
+            }
             ObjectId comentarioId = comentario.getId();
             COLECCION.deleteOne(eq("_id", comentarioId));
             System.out.println("Comentario eliminado exitosamente");
@@ -60,4 +71,33 @@ public class ComentarioDAO implements IComentarioDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    private List<String> validarComentario(Comentario comentario) {
+        List<String> errores = new ArrayList<>();
+
+        if (comentario == null) {
+            errores.add("El comentario esta vacio");
+        }
+
+        if (comentario.getFechaHora() == null) {
+            errores.add("El campo FechaHora es requerido");
+        }
+
+        if (comentario.getContenido() == null || comentario.getContenido().isEmpty()) {
+            errores.add("El campo Contenido es requerido");
+        }
+
+        if (comentario.getUsuarioNormal() == null) {
+            errores.add("El campo UsuarioNormal es requerido");
+        }
+
+        if (comentario.getPublicacionComun() == null) {
+            errores.add("El campo PublicacionComun es requerido");
+        }
+
+        if (comentario.getComentarios() == null) {
+            errores.add("El campo Comentarios es requerido");
+        }
+
+        return errores;
+    }
 }

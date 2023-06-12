@@ -26,7 +26,6 @@ public interface IFachadaPersistencia {
     public Comun registrarPublicacionComun(Comun publicacionComun);
 
     public Anclada registrarPublicacionAnclada(Anclada anclada);
-    
 
     public Comun editarPublicacionComun(Comun publicacionComun);
 
