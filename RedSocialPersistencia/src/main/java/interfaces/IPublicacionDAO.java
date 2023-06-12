@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comun;
 import dominio.Publicacion;
 import excepciones.MongoDBException;
@@ -19,7 +19,11 @@ public interface IPublicacionDAO {
 
     public Comun registrarPublicacionComun(Comun publicacionComun) throws MongoDBException;
 
+<<<<<<< HEAD
     public Ancalada registrarPublicacionAnclada(Ancalada anclada) throws MongoDBException;
+=======
+    public Anclada registrarPublicacionAnclada(Anclada anclada);
+>>>>>>> 335486c334640d89bf733d7c805d9c13f6826427
 
     public Comun editarPublicacionComun(Comun publicacionComun) throws MongoDBException;
 

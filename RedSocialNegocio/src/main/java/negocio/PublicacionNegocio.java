@@ -5,7 +5,7 @@
  */
 package negocio;
 
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comun;
 import dominio.Publicacion;
 import fachada.IFachadaPersistencia;
@@ -54,7 +54,7 @@ public class PublicacionNegocio implements IPublicacionNegocio {
     }
 
     @Override
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada) {
+    public Anclada registrarPublicacionAnclada(Anclada anclada) {
         if (anclada == null) {
             throw new IllegalArgumentException("La publicacion anclada no puede ser nula");
         }

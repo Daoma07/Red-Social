@@ -10,19 +10,20 @@ import java.util.List;
 /**
  *
  * @author HP
+ * //
  */
 public class Administrador extends Usuario {
 
-    private List<Ancalada> publicacionesAncladas;
+    private List<Anclada> publicacionesAncladas;
 
     public Administrador() {
     }
 
-    public List<Ancalada> getPublicacionesAncladas() {
+    public List<Anclada> getPublicacionesAncladas() {
         return publicacionesAncladas;
     }
 
-    public void setPublicacionesAncladas(List<Ancalada> publicacionesAncladas) {
+    public void setPublicacionesAncladas(List<Anclada> publicacionesAncladas) {
         this.publicacionesAncladas = publicacionesAncladas;
     }
 
