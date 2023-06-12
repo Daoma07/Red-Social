@@ -10,6 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
 import dominio.Comentario;
+import excepciones.MongoDBException;
 import interfaces.IComentarioDAO;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -31,11 +32,11 @@ public class ComentarioDAO implements IComentarioDAO {
     }
 
     @Override
-    public Comentario registrarComentario(Comentario comentario) {
+    public Comentario registrarComentario(Comentario comentario) throws MongoDBException {
         try {
             COLECCION.insertOne(comentario);
             return comentario;
-        } catch (Exception e) {
+        } catch (MongoDBException e) {
             System.out.println("Error al registrar el comentario: " + e.getMessage());
             return null;
         }

@@ -7,6 +7,7 @@ package interfaces;
 
 import dominio.Comentario;
 import java.util.List;
+import excepciones.MongoDBException;
 
 /**
  *
@@ -14,9 +15,9 @@ import java.util.List;
  */
 public interface IComentarioDAO {
 
-    public Comentario registrarComentario(Comentario comentario);
+    public Comentario registrarComentario(Comentario comentario) throws MongoDBException;
 
-    public boolean eliminarComentario(Comentario comentario);
+    public boolean eliminarComentario(Comentario comentario) throws MongoDBException;
 
-    public List<Comentario> consultarComentarios();
+    public List<Comentario> consultarComentarios() throws MongoDBException;
 }

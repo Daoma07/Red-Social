@@ -8,6 +8,7 @@ package interfaces;
 import dominio.Ancalada;
 import dominio.Comun;
 import dominio.Publicacion;
+import excepciones.MongoDBException;
 import java.util.List;
 
 /**
@@ -16,16 +17,16 @@ import java.util.List;
  */
 public interface IPublicacionDAO {
 
-    public Comun registrarPublicacionComun(Comun publicacionComun);
+    public Comun registrarPublicacionComun(Comun publicacionComun) throws MongoDBException;
 
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada);
+    public Ancalada registrarPublicacionAnclada(Ancalada anclada) throws MongoDBException;
 
-    public Comun editarPublicacionComun(Comun publicacionComun);
+    public Comun editarPublicacionComun(Comun publicacionComun) throws MongoDBException;
 
-    public List<Publicacion> consultarPublicaciones();
+    public List<Publicacion> consultarPublicaciones() throws MongoDBException;
 
-    public boolean eliminarPublicacion(Publicacion publicacion);
+    public boolean eliminarPublicacion(Publicacion publicacion) throws MongoDBException;
 
-    public boolean existePublicacion(Publicacion publicacion);
+    public boolean existePublicacion(Publicacion publicacion) throws MongoDBException;
 
 }

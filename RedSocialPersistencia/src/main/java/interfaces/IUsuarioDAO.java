@@ -6,6 +6,7 @@
 package interfaces;
 
 import dominio.Usuario;
+import excepciones.MongoDBException;
 
 /**
  *
@@ -13,8 +14,8 @@ import dominio.Usuario;
  */
 public interface IUsuarioDAO {
 
-    public Usuario registrarUsuario(Usuario usuario);
+    public Usuario registrarUsuario(Usuario usuario) throws MongoDBException;
 
-    public boolean existeUsuario(String avatar, String correo);
+    public boolean existeUsuario(String avatar, String correo) throws MongoDBException;
 
 }
