@@ -9,6 +9,7 @@ import dominio.Ancalada;
 import dominio.Comun;
 import dominio.Publicacion;
 import fachada.IFachadaPersistencia;
+import interfaces.IPublicacionNegocio;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @author HP
  */
-public class PublicacionNegocio {
+public class PublicacionNegocio implements IPublicacionNegocio {
 
     private final IFachadaPersistencia fachadaPersistencia;
 
@@ -24,6 +25,7 @@ public class PublicacionNegocio {
         this.fachadaPersistencia = fachadaPersistencia;
     }
 
+    @Override
     public Comun registrarPublicacionComun(Comun publicacionComun) {
         if (publicacionComun == null) {
             throw new IllegalArgumentException("La publicacion no puede ser nula");
@@ -51,6 +53,7 @@ public class PublicacionNegocio {
         return fachadaPersistencia.registrarPublicacionComun(publicacionComun);
     }
 
+    @Override
     public Ancalada registrarPublicacionAnclada(Ancalada anclada) {
         if (anclada == null) {
             throw new IllegalArgumentException("La publicacion anclada no puede ser nula");
@@ -78,6 +81,7 @@ public class PublicacionNegocio {
         return fachadaPersistencia.registrarPublicacionAnclada(anclada);
     }
 
+    @Override
     public Comun editarPublicacionComun(Comun publicacionComun) {
         if (publicacionComun.getUsuario() == null) {
             throw new IllegalArgumentException("El usuario asociado a la publicación no existe");
@@ -86,14 +90,17 @@ public class PublicacionNegocio {
         return fachadaPersistencia.editarPublicacionComun(publicacionComun);
     }
 
+    @Override
     public List<Publicacion> consultarPublicaciones() {
         return fachadaPersistencia.consultarPublicaciones();
     }
 
+    @Override
     public boolean eliminarPublicacion(Publicacion publicacion) {
         return fachadaPersistencia.eliminarPublicacion(publicacion);
     }
 
+    @Override
     public boolean existePublicacion(Publicacion publicacion) {
         return fachadaPersistencia.existePublicacion(publicacion);
     }

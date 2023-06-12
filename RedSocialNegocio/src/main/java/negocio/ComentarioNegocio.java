@@ -8,6 +8,8 @@ package negocio;
 import dominio.Comentario;
 import dominio.Usuario;
 import fachada.IFachadaPersistencia;
+import interfaces.IComentarioDAO;
+import interfaces.IComentarioNegocio;
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,19 +17,20 @@ import java.util.List;
  *
  * @author HP
  */
-public class ComentarioNegocio {
-    
+public class ComentarioNegocio implements IComentarioNegocio {
+
     private final IFachadaPersistencia fachadaPersistencia;
-    
+
     public ComentarioNegocio(IFachadaPersistencia fachadaPersistencia) {
         this.fachadaPersistencia = fachadaPersistencia;
     }
-    
+
+    @Override
     public Comentario registrarComentario(Comentario comentario) {
         if (comentario == null) {
             throw new IllegalArgumentException("El comentario no puede ser nulo");
         }
-        
+
         if (comentario.getFechaHora() == null) {
             comentario.setFechaHora(Calendar.getInstance());
         }
@@ -36,7 +39,7 @@ public class ComentarioNegocio {
         if (comentario.getContenido().isEmpty()) {
             throw new IllegalArgumentException("El contenido del comentario no puede estar vacío");
         }
-        
+
         boolean respuestaPublicacion = fachadaPersistencia.existePublicacion(comentario.getPublicacionComun());
         // Validar si el contenido de la publicacion existe
         if (respuestaPublicacion == false) {
@@ -49,16 +52,18 @@ public class ComentarioNegocio {
         if (respuestaUsuario == false) {
             throw new IllegalArgumentException("El usuario asociado al comentario no existe");
         }
-        
+
         return fachadaPersistencia.registrarComentario(comentario);
     }
-    
+
+    @Override
     public boolean eliminarComentario(Comentario comentario) {
         return fachadaPersistencia.eliminarComentario(comentario);
     }
-    
+
+    @Override
     public List<Comentario> consultarComentarios() {
         return fachadaPersistencia.consultarComentarios();
     }
-    
+
 }

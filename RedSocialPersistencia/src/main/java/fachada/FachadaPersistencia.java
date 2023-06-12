@@ -8,7 +8,6 @@ package fachada;
 import dominio.Ancalada;
 import dominio.Comentario;
 import dominio.Comun;
-import dominio.Normal;
 import dominio.Publicacion;
 import dominio.Usuario;
 import factory.FabricaDAO;

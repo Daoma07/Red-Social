@@ -7,12 +7,13 @@ package negocio;
 
 import dominio.Usuario;
 import fachada.IFachadaPersistencia;
+import interfaces.IUsuarioNegocio;
 
 /**
  *
  * @author HP
  */
-public class UsuarioNegocio {
+public class UsuarioNegocio implements IUsuarioNegocio {
 
     private final IFachadaPersistencia fachadaPersistencia;
 
@@ -20,6 +21,7 @@ public class UsuarioNegocio {
         this.fachadaPersistencia = fachadaPersistencia;
     }
 
+    @Override
     public Usuario registrarUsuario(Usuario usuario) {
 
         if (usuario.getNombres() == null || usuario.getNombres().isEmpty()) {
