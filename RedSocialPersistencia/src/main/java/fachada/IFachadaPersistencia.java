@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fachada;
 
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comentario;
 import dominio.Comun;
 import dominio.Normal;
@@ -29,7 +25,9 @@ public interface IFachadaPersistencia {
     //Publicación
     public Comun registrarPublicacionComun(Comun publicacionComun);
 
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada);
+    public Anclada registrarPublicacionAnclada(Anclada anclada);
+    
+    public Normal registrarPublicacionNormal(Normal normal);
 
     public Comun editarPublicacionComun(Comun publicacionComun);
 

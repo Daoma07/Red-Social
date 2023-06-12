@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comun;
 import dominio.Publicacion;
 import java.util.List;
@@ -18,7 +18,7 @@ public interface IPublicacionDAO {
 
     public Comun registrarPublicacionComun(Comun publicacionComun);
 
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada);
+    public Anclada registrarPublicacionAnclada(Anclada anclada);
 
     public Comun editarPublicacionComun(Comun publicacionComun);
 

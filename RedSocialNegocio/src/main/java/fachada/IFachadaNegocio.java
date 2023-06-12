@@ -5,7 +5,7 @@
  */
 package fachada;
 
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comentario;
 import dominio.Comun;
 import dominio.Publicacion;
@@ -28,7 +28,7 @@ public interface IFachadaNegocio {
     //Publicacion
     public Comun registrarPublicacionComun(Comun publicacionComun);
 
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada);
+    public Anclada registrarPublicacionAnclada(Ancalada anclada);
 
     public Comun editarPublicacionComun(Comun publicacionComun);
 

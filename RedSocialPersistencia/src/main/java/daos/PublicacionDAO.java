@@ -12,7 +12,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comun;
 import dominio.Publicacion;
 import interfaces.IPublicacionDAO;
@@ -50,7 +50,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada) {
+    public Anclada registrarPublicacionAnclada(Anclada anclada) {
         try {
             COLECCION.insertOne(anclada);
             return anclada;

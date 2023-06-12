@@ -5,7 +5,7 @@
  */
 package fachada;
 
-import dominio.Ancalada;
+import dominio.Anclada;
 import dominio.Comentario;
 import dominio.Comun;
 import dominio.Publicacion;
@@ -55,7 +55,7 @@ public class FachadaPersistencia implements IFachadaPersistencia {
     }
 
     @Override
-    public Ancalada registrarPublicacionAnclada(Ancalada anclada) {
+    public Anclada registrarPublicacionAnclada(Anclada anclada) {
         return publicacionDAO.registrarPublicacionAnclada(anclada);
     }
 
