@@ -23,6 +23,11 @@ public class ConexionMongoDB implements IConexionBD {
     public final static String NOMBRE_BASE_DATOS = "red_social";
     private MongoDatabase baseDatos;
 
+    /**
+    * Devuelve la instancia de la base de datos MongoDB.
+    *
+    * @return La instancia de la base de datos MongoDB.
+    */
     @Override
     public MongoDatabase getBaseDatos() {
         if (baseDatos == null) {

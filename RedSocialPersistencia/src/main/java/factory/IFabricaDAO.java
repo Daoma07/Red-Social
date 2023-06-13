@@ -10,14 +10,29 @@ import interfaces.IPublicacionDAO;
 import interfaces.IUsuarioDAO;
 
 /**
- *
- * @author HP
+ * Esta interfaz define los métodos para crear instancias de los DAO correspondientes.
  */
 public interface IFabricaDAO {
 
+    /**
+     * Crea y devuelve una instancia de IComentarioDAO.
+     *
+     * @return una instancia de IComentarioDAO
+     */
     public IComentarioDAO crearComentarioDAO();
 
+    /**
+     * Crea y devuelve una instancia de IPublicacionDAO.
+     *
+     * @return una instancia de IPublicacionDAO
+     */
     public IPublicacionDAO crearPublicacionDAO();
 
+    /**
+     * Crea y devuelve una instancia de IUsuarioDAO.
+     *
+     * @return una instancia de IUsuarioDAO
+     */
     public IUsuarioDAO crearUsuarioDAO();
+    
 }

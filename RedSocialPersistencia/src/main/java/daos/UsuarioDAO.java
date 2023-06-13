@@ -26,6 +26,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     private final MongoCollection<Usuario> COLECCION;
     private UsuarioValidacion usuarioValidacion;
 
+    /**
+    * Constructor de la clase UsuarioDAO.
+    *
+    * @param CONEXION La instancia de IConexionBD utilizada para establecer la conexión con la base de datos.
+    */
     public UsuarioDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
@@ -33,6 +38,12 @@ public class UsuarioDAO implements IUsuarioDAO {
         this.usuarioValidacion = new UsuarioValidacion();
     }
 
+    /**
+    * Registra un usuario en la base de datos.
+    *
+    * @param usuario El usuario a registrar.
+    * @return El usuario registrado, o null si ocurrió un error o el avatar o correo electrónico ya están en uso.
+    */
     @Override
     public Usuario registrarUsuario(Usuario usuario) throws MongoDBException {
         try {
@@ -55,6 +66,13 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
+    /**
+    * Verifica si existe un usuario con el avatar o correo electrónico dado en la base de datos.
+    *
+    * @param avatar El avatar del usuario a verificar.
+    * @param correo El correo electrónico del usuario a verificar.
+    * @return true si existe un usuario con el avatar o correo electrónico dado, false de lo contrario.
+    */
     @Override
     public boolean existeUsuario(String avatar, String correo) throws MongoDBException {
         try {

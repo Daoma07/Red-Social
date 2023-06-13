@@ -35,6 +35,11 @@ public class PublicacionDAO implements IPublicacionDAO {
     private final MongoCollection<Publicacion> COLECCION;
     private PublicacionValidacion publicacionValidacion;
 
+    /**
+    * Constructor de la clase PublicacionDAO.
+    *
+    * @param CONEXION La instancia de IConexionBD utilizada para establecer la conexión con la base de datos.
+    */
     public PublicacionDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
@@ -42,6 +47,12 @@ public class PublicacionDAO implements IPublicacionDAO {
         this.publicacionValidacion = new PublicacionValidacion();
     }
 
+    /**
+    * Registra una publicación común en la base de datos.
+    *
+    * @param publicacionComun La publicación común a registrar.
+    * @return La publicación común registrada, o null si ocurrió un error.
+    */
     @Override
     public Comun registrarPublicacionComun(Comun publicacionComun) throws MongoDBException {
         try {
@@ -58,6 +69,12 @@ public class PublicacionDAO implements IPublicacionDAO {
         }
     }
 
+    /**
+    * Registra una publicación anclada en la base de datos.
+    *
+    * @param anclada La publicación anclada a registrar.
+    * @return La publicación anclada registrada, o null si ocurrió un error.
+    */
     @Override
     public Anclada registrarPublicacionAnclada(Anclada anclada) throws MongoDBException {
         try {
@@ -75,6 +92,12 @@ public class PublicacionDAO implements IPublicacionDAO {
         }
     }
 
+    /**
+    * Edita una publicación común en la base de datos.
+    *
+    * @param publicacionComun La publicación común a editar.
+    * @return La publicación común editada, o null si ocurrió un error o la publicación no se encontró.
+    */
     @Override
     public Comun editarPublicacionComun(Comun publicacionComun) throws MongoDBException {
         try {
@@ -101,6 +124,11 @@ public class PublicacionDAO implements IPublicacionDAO {
         }
     }
 
+    /**
+    * Consulta todas las publicaciones en la base de datos.
+    *
+    * @return Una lista de publicaciones.
+    */
     @Override
     public List<Publicacion> consultarPublicaciones() throws MongoDBException {
         try {
@@ -118,6 +146,12 @@ public class PublicacionDAO implements IPublicacionDAO {
         }
     }
 
+    /**
+    * Elimina una publicación de la base de datos.
+    *
+    * @param publicacion La publicación a eliminar.
+    * @return true si la eliminación fue exitosa, false si ocurrió un error o la publicación no se encontró.
+    */
     @Override
     public boolean eliminarPublicacion(Publicacion publicacion) throws MongoDBException {
         try {
@@ -143,6 +177,12 @@ public class PublicacionDAO implements IPublicacionDAO {
         }
     }
 
+    /**
+    * Verifica si una publicación existe en la base de datos.
+    *
+    * @param publicacion La publicación a verificar.
+    * @return true si la publicación existe, false si no existe o si ocurrió un error.
+    */
     @Override
     public boolean existePublicacion(Publicacion publicacion) throws MongoDBException {
         try {

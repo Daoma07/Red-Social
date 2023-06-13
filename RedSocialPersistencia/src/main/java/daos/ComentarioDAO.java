@@ -27,6 +27,11 @@ public class ComentarioDAO implements IComentarioDAO {
     private final MongoCollection<Comentario> COLECCION;
     private ComentarioValidacion comentarioValidacion;
 
+    /**
+    * Constructor de la clase ComentarioDAO.
+    *
+    * @param CONEXION La instancia de IConexionBD utilizada para establecer la conexión con la base de datos.
+    */
     public ComentarioDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
@@ -34,6 +39,13 @@ public class ComentarioDAO implements IComentarioDAO {
         this.comentarioValidacion = new ComentarioValidacion();
     }
 
+    /**
+    * Registra un comentario en la base de datos.
+    *
+    * @param comentario El comentario a registrar.
+    * @return El comentario registrado, o null si ocurrió un error.
+    * @throws MongoDBException Si el comentario no es válido.
+    */
     @Override
     public Comentario registrarComentario(Comentario comentario) throws MongoDBException {
         try {
@@ -50,6 +62,12 @@ public class ComentarioDAO implements IComentarioDAO {
         }
     }
 
+    /**
+    * Elimina un comentario de la base de datos.
+    *
+    * @param comentario El comentario a eliminar.
+    * @return true si el comentario se eliminó exitosamente, false en caso contrario.
+    */
     @Override
     public boolean eliminarComentario(Comentario comentario) {
         try {
@@ -68,6 +86,11 @@ public class ComentarioDAO implements IComentarioDAO {
         }
     }
 
+    /**
+    * Consulta todos los comentarios de la base de datos.
+    *
+    * @return Una lista de comentarios.
+    */
     @Override
     public List<Comentario> consultarComentarios() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
