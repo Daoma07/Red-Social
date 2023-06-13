@@ -56,7 +56,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public Anclada registrarPublicacionAnclada(Anclada anclada) {
+    public Anclada registrarPublicacionAnclada(Anclada anclada) throws MongoDBException {
         try {
             List<String> errores = validarPublicacionAnclada(anclada);
 
@@ -73,7 +73,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public Comun editarPublicacionComun(Comun publicacionComun) {
+    public Comun editarPublicacionComun(Comun publicacionComun) throws MongoDBException {
         try {
             List<String> errores = validarPublicacionComun(publicacionComun);
             if (!errores.isEmpty()) {
@@ -99,7 +99,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public List<Publicacion> consultarPublicaciones() {
+    public List<Publicacion> consultarPublicaciones() throws MongoDBException {
         try {
             List<Publicacion> publicaciones = new ArrayList<>();
             MongoCursor<Publicacion> cursor = COLECCION.find().iterator();
@@ -116,7 +116,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public boolean eliminarPublicacion(Publicacion publicacion) {
+    public boolean eliminarPublicacion(Publicacion publicacion) throws MongoDBException {
         try {
             List<String> errores = validarPublicacion(publicacion);
             if (!errores.isEmpty()) {
@@ -141,7 +141,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     }
 
     @Override
-    public boolean existePublicacion(Publicacion publicacion) {
+    public boolean existePublicacion(Publicacion publicacion) throws MongoDBException {
         try {
             List<String> errores = validarPublicacion(publicacion);
             if (!errores.isEmpty()) {
@@ -225,4 +225,5 @@ public class PublicacionDAO implements IPublicacionDAO {
 
         return errores;
     }
+
 }
