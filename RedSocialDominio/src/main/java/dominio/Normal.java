@@ -9,20 +9,30 @@ import dominio.Usuario;
 import java.util.List;
 
 /**
- *
- * @author HP
+ * Clase que representa a un usuario normal.
  */
 public class Normal extends Usuario {
 
     private List<Comentario> comenatarios;
 
+    /**
+     * Constructor por defecto de la clase Normal.
+     */
     public Normal() {
     }
 
+    /**
+     * Obtiene la lista de comentarios del usuario normal.
+     * @return La lista de comentarios del usuario normal.
+     */
     public List<Comentario> getComenatarios() {
         return comenatarios;
     }
 
+    /**
+     * Establece la lista de comentarios del usuario normal.
+     * @param comentarios La lista de comentarios del usuario normal.
+     */
     public void setComenatarios(List<Comentario> comenatarios) {
         this.comenatarios = comenatarios;
     }

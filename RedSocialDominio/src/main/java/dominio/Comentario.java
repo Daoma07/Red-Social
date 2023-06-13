@@ -11,8 +11,7 @@ import java.util.Objects;
 import org.bson.types.ObjectId;
 
 /**
- *
- * @author HP
+ * Clase que representa un comentario en el sistema.
  */
 public class Comentario {
 
@@ -23,9 +22,19 @@ public class Comentario {
     private Comun publicacionComun;
     private List<Comentario> comentarios;
 
+    /**
+     * Constructor por defecto de la clase Comentario.
+     */
     public Comentario() {
     }
 
+    /**
+     * Constructor que recibe la fecha y hora, el contenido, el usuario normal y la publicación común asociados al comentario.
+     * @param fechaHora La fecha y hora del comentario.
+     * @param contenido El contenido del comentario.
+     * @param usuarioNormal El usuario normal asociado al comentario.
+     * @param publicacionComun La publicación común asociada al comentario.
+     */
     public Comentario(Calendar fechaHora, String contenido, Normal usuarioNormal, Comun publicacionComun) {
         this.fechaHora = fechaHora;
         this.contenido = contenido;
@@ -33,6 +42,15 @@ public class Comentario {
         this.publicacionComun = publicacionComun;
     }
 
+    /**
+     * Constructor que recibe el ID, la fecha y hora, el contenido, el usuario normal, la publicación común y la lista de comentarios asociados al comentario.
+     * @param id El ID del comentario.
+     * @param fechaHora La fecha y hora del comentario.
+     * @param contenido El contenido del comentario.
+     * @param usuarioNormal El usuario normal asociado al comentario.
+     * @param publicacionComun La publicación común asociada al comentario.
+     * @param comentarios La lista de comentarios asociados al comentario.
+     */
     public Comentario(ObjectId id, Calendar fechaHora, String contenido, Normal usuarioNormal, Comun publicacionComun, List<Comentario> comentarios) {
         this.id = id;
         this.fechaHora = fechaHora;
@@ -42,54 +60,103 @@ public class Comentario {
         this.comentarios = comentarios;
     }
 
+    /**
+     * Obtiene el ID del comentario.
+     * @return El ID del comentario.
+     */
     public ObjectId getId() {
         return id;
     }
 
+    /**
+     * Establece el ID del comentario.
+     * @param id El ID del comentario.
+     */
     public void setId(ObjectId id) {
         this.id = id;
     }
 
+    /**
+     * Obtiene la fecha y hora del comentario.
+     * @return La fecha y hora del comentario.
+     */
     public Calendar getFechaHora() {
         return fechaHora;
     }
 
+    /**
+     * Establece la fecha y hora del comentario.
+     * @param fechaHora La fecha y hora del comentario.
+     */
     public void setFechaHora(Calendar fechaHora) {
         this.fechaHora = fechaHora;
     }
 
+    /**
+     * Obtiene el contenido del comentario.
+     * @return El contenido del comentario.
+     */
     public String getContenido() {
         return contenido;
     }
 
+    /**
+     * Establece el contenido del comentario.
+     * @param contenido El contenido del comentario.
+     */
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
+    /**
+     * Obtiene el usuario normal asociado al comentario.
+     * @return El usuario normal asociado al comentario.
+     */
     public Normal getUsuarioNormal() {
         return usuarioNormal;
     }
 
+    /**
+     * Establece el usuario normal asociado al comentario.
+     * @param usuarioNormal El usuario normal asociado al comentario.
+     */
     public void setUsuarioNormal(Normal usuarioNormal) {
         this.usuarioNormal = usuarioNormal;
     }
 
+    /**
+     * Obtiene la publicación común asociada al comentario.
+     * @return La publicación común asociada al comentario.
+     */
     public Comun getPublicacionComun() {
         return publicacionComun;
     }
 
+    /**
+     * Establece la publicación común asociada al comentario.
+     * @param publicacionComun La publicación común asociada al comentario.
+     */
     public void setPublicacionComun(Comun publicacionComun) {
         this.publicacionComun = publicacionComun;
     }
 
+    /**
+     * Obtiene la lista de comentarios asociados al comentario.
+     * @return La lista de comentarios asociados al comentario.
+     */
     public List<Comentario> getComentarios() {
         return comentarios;
     }
 
+    /**
+     * Establece la lista de comentarios asociados al comentario.
+     * @param comentarios La lista de comentarios asociados al comentario.
+     */
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 7;

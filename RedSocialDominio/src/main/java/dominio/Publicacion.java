@@ -10,8 +10,7 @@ import java.util.Objects;
 import org.bson.types.ObjectId;
 
 /**
- *
- * @author HP
+ * Clase que representa una publicación.
  */
 public class Publicacion {
 
@@ -21,9 +20,19 @@ public class Publicacion {
     private String contenido;
     private Calendar fechaHoraEdicion;
 
+    /**
+     * Constructor por defecto de la clase Publicacion.
+     */
     public Publicacion() {
     }
 
+    /**
+     * Constructor de la clase Publicacion.
+     * @param fechaHoraCreacion La fecha y hora de creación de la publicación.
+     * @param titulo El título de la publicación.
+     * @param contenido El contenido de la publicación.
+     * @param fechaHoraEdicion La fecha y hora de edición de la publicación.
+     */
     public Publicacion(Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
@@ -31,6 +40,14 @@ public class Publicacion {
         this.fechaHoraEdicion = fechaHoraEdicion;
     }
 
+    /**
+     * Constructor de la clase Publicacion.
+     * @param id El ID de la publicación.
+     * @param fechaHoraCreacion La fecha y hora de creación de la publicación.
+     * @param titulo El título de la publicación.
+     * @param contenido El contenido de la publicación.
+     * @param fechaHoraEdicion La fecha y hora de edición de la publicación.
+     */
     public Publicacion(ObjectId id, Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
         this.id = id;
         this.fechaHoraCreacion = fechaHoraCreacion;
@@ -39,42 +56,82 @@ public class Publicacion {
         this.fechaHoraEdicion = fechaHoraEdicion;
     }
 
+    /**
+     * Obtiene el ID de la publicación.
+     * @return El ID de la publicación.
+     */
     public ObjectId getId() {
         return id;
     }
 
+    /**
+     * Establece el ID de la publicación.
+     * @param id El ID de la publicación.
+     */
     public void setId(ObjectId id) {
         this.id = id;
     }
 
+    /**
+     * Obtiene la fecha y hora de creación de la publicación.
+     * @return La fecha y hora de creación de la publicación.
+     */
     public Calendar getFechaHoraCreacion() {
         return fechaHoraCreacion;
     }
 
+    /**
+     * Establece la fecha y hora de creación de la publicación.
+     * @param fechaHoraCreacion La fecha y hora de creación de la publicación.
+     */
     public void setFechaHoraCreacion(Calendar fechaHoraCreacion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
     }
 
+    /**
+     * Obtiene el título de la publicación.
+     * @return El título de la publicación.
+     */
     public String getTitulo() {
         return titulo;
     }
 
+    /**
+     * Establece el título de la publicación.
+     * @param titulo El título de la publicación.
+     */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
 
+    /**
+     * Obtiene el contenido de la publicación.
+     * @return El contenido de la publicación.
+     */
     public String getContenido() {
         return contenido;
     }
 
+    /**
+     * Establece el contenido de la publicación.
+     * @param contenido El contenido de la publicación.
+     */
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
 
+    /**
+     * Obtiene la fecha y hora de edición de la publicación.
+     * @return La fecha y hora de edición de la publicación.
+     */
     public Calendar getFechaHoraEdicion() {
         return fechaHoraEdicion;
     }
 
+    /**
+     * Establece la fecha y hora de edición de la publicación.
+     * @param fechaHoraEdicion La fecha y hora de edición de la publicación.
+     */
     public void setFechaHoraEdicion(Calendar fechaHoraEdicion) {
         this.fechaHoraEdicion = fechaHoraEdicion;
     }
