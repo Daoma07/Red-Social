@@ -11,9 +11,9 @@ import com.mongodb.client.MongoDatabase;
 import dominio.Usuario;
 import excepciones.MongoDBException;
 import interfaces.IUsuarioDAO;
-import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
+import validaciones.UsuarioValidacion;
 
 /**
  *
@@ -24,17 +24,19 @@ public class UsuarioDAO implements IUsuarioDAO {
     private final IConexionBD CONEXION;
     private final MongoDatabase BASE_DATOS;
     private final MongoCollection<Usuario> COLECCION;
+    private UsuarioValidacion usuarioValidacion;
 
     public UsuarioDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
         this.COLECCION = BASE_DATOS.getCollection("usuarios", Usuario.class);
+        this.usuarioValidacion = new UsuarioValidacion();
     }
 
     @Override
     public Usuario registrarUsuario(Usuario usuario) throws MongoDBException {
         try {
-            List<String> errores = validarUsuario(usuario);
+            List<String> errores = usuarioValidacion.validarUsuario(usuario);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("La Usuario no es válido: " + mensajeError);
@@ -56,7 +58,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public boolean existeUsuario(String avatar, String correo) throws MongoDBException {
         try {
-            List<String> errores = validarExistencia(avatar, correo);
+            List<String> errores = usuarioValidacion.validarExistencia(avatar, correo);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("Los Datos no son validos: " + mensajeError);
@@ -74,60 +76,4 @@ public class UsuarioDAO implements IUsuarioDAO {
         }
     }
 
-    //Validaciones
-    private List<String> validarUsuario(Usuario usuario) {
-        List<String> errores = new ArrayList<>();
-
-        // Validar los atributos del usuario
-        if (usuario.getNombres() == null || usuario.getNombres().isEmpty()) {
-            errores.add("El campo Nombres es requerido");
-        }
-
-        if (usuario.getApellidoPaterno() == null || usuario.getApellidoPaterno().isEmpty()) {
-            errores.add("El campo ApellidoPaterno es requerido");
-        }
-
-        if (usuario.getApellidoMaterno() == null || usuario.getApellidoMaterno().isEmpty()) {
-            errores.add("El campo ApellidoMaterno es requerido");
-        }
-
-        if (usuario.getTelefono() == null || usuario.getTelefono().isEmpty()) {
-            errores.add("El campo Telefono es requerido");
-        }
-
-        if (usuario.getAvatar() == null || usuario.getAvatar().isEmpty()) {
-            errores.add("El campo Avatar es requerido");
-        }
-
-        if (usuario.getCiudad() == null || usuario.getCiudad().isEmpty()) {
-            errores.add("El campo Ciudad es requerido");
-        }
-
-        if (usuario.getFechaNacimiento() == null) {
-            errores.add("El campo FechaNacimiento es requerido");
-        }
-
-        if (usuario.getGenero() == null) {
-            errores.add("El campo Genero es requerido");
-        }
-
-        if (usuario.getCredencial() == null) {
-            errores.add("La credencial del usuario es inválida");
-        }
-        return errores;
-    }
-
-    private List<String> validarExistencia(String avatar, String correo) {
-        List<String> errores = new ArrayList<>();
-
-        if (avatar == null || avatar.isEmpty()) {
-            errores.add("El Avatar es requerido");
-        }
-
-        if (correo == null || correo.isEmpty()) {
-            errores.add("El Correo es requerido");
-        }
-
-        return errores;
-    }
 }

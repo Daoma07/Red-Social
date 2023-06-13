@@ -12,9 +12,9 @@ import static com.mongodb.client.model.Filters.eq;
 import dominio.Comentario;
 import excepciones.MongoDBException;
 import interfaces.IComentarioDAO;
-import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
+import validaciones.ComentarioValidacion;
 
 /**
  *
@@ -25,17 +25,19 @@ public class ComentarioDAO implements IComentarioDAO {
     private final IConexionBD CONEXION;
     private final MongoDatabase BASE_DATOS;
     private final MongoCollection<Comentario> COLECCION;
+    private ComentarioValidacion comentarioValidacion;
 
     public ComentarioDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
         this.COLECCION = BASE_DATOS.getCollection("comentarios", Comentario.class);
+        this.comentarioValidacion = new ComentarioValidacion();
     }
 
     @Override
     public Comentario registrarComentario(Comentario comentario) throws MongoDBException {
         try {
-            List<String> errores = validarComentario(comentario);
+            List<String> errores = comentarioValidacion.validarComentario(comentario);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("El comentario no es válido: " + mensajeError);
@@ -51,7 +53,7 @@ public class ComentarioDAO implements IComentarioDAO {
     @Override
     public boolean eliminarComentario(Comentario comentario) {
         try {
-            List<String> errores = validarComentario(comentario);
+            List<String> errores = comentarioValidacion.validarComentario(comentario);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("El comentario no es válido: " + mensajeError);
@@ -71,33 +73,4 @@ public class ComentarioDAO implements IComentarioDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private List<String> validarComentario(Comentario comentario) {
-        List<String> errores = new ArrayList<>();
-
-        if (comentario == null) {
-            errores.add("El comentario esta vacio");
-        }
-
-        if (comentario.getFechaHora() == null) {
-            errores.add("El campo FechaHora es requerido");
-        }
-
-        if (comentario.getContenido() == null || comentario.getContenido().isEmpty()) {
-            errores.add("El campo Contenido es requerido");
-        }
-
-        if (comentario.getUsuarioNormal() == null) {
-            errores.add("El campo UsuarioNormal es requerido");
-        }
-
-        if (comentario.getPublicacionComun() == null) {
-            errores.add("El campo PublicacionComun es requerido");
-        }
-
-        if (comentario.getComentarios() == null) {
-            errores.add("El campo Comentarios es requerido");
-        }
-
-        return errores;
-    }
 }

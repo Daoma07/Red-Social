@@ -22,6 +22,7 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import validaciones.PublicacionValidacion;
 
 /**
  *
@@ -32,17 +33,19 @@ public class PublicacionDAO implements IPublicacionDAO {
     private final IConexionBD CONEXION;
     private final MongoDatabase BASE_DATOS;
     private final MongoCollection<Publicacion> COLECCION;
+    private PublicacionValidacion publicacionValidacion;
 
     public PublicacionDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
         this.COLECCION = BASE_DATOS.getCollection("publicaciones", Publicacion.class);
+        this.publicacionValidacion = new PublicacionValidacion();
     }
 
     @Override
     public Comun registrarPublicacionComun(Comun publicacionComun) throws MongoDBException {
         try {
-            List<String> errores = validarPublicacionComun(publicacionComun);
+            List<String> errores = publicacionValidacion.validarPublicacionComun(publicacionComun);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("La publicación común no es válida: " + mensajeError);
@@ -58,7 +61,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     @Override
     public Anclada registrarPublicacionAnclada(Anclada anclada) throws MongoDBException {
         try {
-            List<String> errores = validarPublicacionAnclada(anclada);
+            List<String> errores = publicacionValidacion.validarPublicacionAnclada(anclada);
 
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
@@ -75,7 +78,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     @Override
     public Comun editarPublicacionComun(Comun publicacionComun) throws MongoDBException {
         try {
-            List<String> errores = validarPublicacionComun(publicacionComun);
+            List<String> errores = publicacionValidacion.validarPublicacionComun(publicacionComun);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("La publicación común no es válida: " + mensajeError);
@@ -118,7 +121,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     @Override
     public boolean eliminarPublicacion(Publicacion publicacion) throws MongoDBException {
         try {
-            List<String> errores = validarPublicacion(publicacion);
+            List<String> errores = publicacionValidacion.validarPublicacion(publicacion);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("La publicación no es válida: " + mensajeError);
@@ -143,7 +146,7 @@ public class PublicacionDAO implements IPublicacionDAO {
     @Override
     public boolean existePublicacion(Publicacion publicacion) throws MongoDBException {
         try {
-            List<String> errores = validarPublicacion(publicacion);
+            List<String> errores = publicacionValidacion.validarPublicacion(publicacion);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("La publicación no es válida: " + mensajeError);
@@ -157,73 +160,4 @@ public class PublicacionDAO implements IPublicacionDAO {
             return false;
         }
     }
-
-    //Validaciones 
-    private List<String> validarPublicacion(Publicacion publicacion) {
-        List<String> errores = new ArrayList<>();
-
-        // Validar los atributos de la publicación común
-        if (publicacion.getFechaHoraCreacion() == null) {
-            errores.add("El campo FechaHoraCreacion es requerido");
-        }
-
-        if (publicacion.getTitulo() == null || publicacion.getTitulo().isEmpty()) {
-            errores.add("El campo Titulo es requerido");
-        }
-
-        if (publicacion.getContenido() == null || publicacion.getContenido().isEmpty()) {
-            errores.add("El campo Contenido es requerido");
-        }
-
-        return errores;
-    }
-
-    private List<String> validarPublicacionComun(Comun publicacionComun) {
-        List<String> errores = new ArrayList<>();
-
-        // Validar los atributos de la publicación común
-        if (publicacionComun.getFechaHoraCreacion() == null) {
-            errores.add("El campo FechaHoraCreacion es requerido");
-        }
-
-        if (publicacionComun.getTitulo() == null || publicacionComun.getTitulo().isEmpty()) {
-            errores.add("El campo Titulo es requerido");
-        }
-
-        if (publicacionComun.getContenido() == null || publicacionComun.getContenido().isEmpty()) {
-            errores.add("El campo Contenido es requerido");
-        }
-
-        // Validar atributos específicos de la clase Comun
-        if (publicacionComun.getUsuario() == null) {
-            errores.add("El campo Usuario es requerido");
-        }
-
-        return errores;
-    }
-
-    private List<String> validarPublicacionAnclada(Anclada anclada) {
-        List<String> errores = new ArrayList<>();
-
-        // Validar los atributos de la publicación anclada
-        if (anclada.getFechaHoraCreacion() == null) {
-            errores.add("El campo FechaHoraCreacion es requerido");
-        }
-
-        if (anclada.getTitulo() == null || anclada.getTitulo().isEmpty()) {
-            errores.add("El campo Titulo es requerido");
-        }
-
-        if (anclada.getContenido() == null || anclada.getContenido().isEmpty()) {
-            errores.add("El campo Contenido es requerido");
-        }
-
-        // Validar atributos específicos de la clase Anclada
-        if (anclada.getAdmin() == null) {
-            errores.add("El campo Admin es requerido");
-        }
-
-        return errores;
-    }
-
 }
