@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package validaciones;
 
 import dominio.Usuario;
@@ -11,14 +7,20 @@ import java.util.List;
 
 /**
  *
- * @author HP
+ * @author Daniel Omar Alameda, Mario Alejandro Salcedo, David Sotelo Palafox
  */
 public class UsuarioValidacion {
-
+    /**
+     * Constructor por defecto
+     */
     public UsuarioValidacion() {
     }
 
-    //Validaciones
+    /**
+     * Método List validarUsuario que recibe como parámetro un usuario
+     * @param usuario
+     * @return 
+     */
     public List<String> validarUsuario(Usuario usuario) {
 
         List<String> errores = new ArrayList<>();

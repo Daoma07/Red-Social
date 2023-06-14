@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author HP
+ * @author Daniel Omar Alameda, Mario Alejandro Salcedo, David Sotelo Palafox
  */
 public class ComentarioValidacion {
 

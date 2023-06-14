@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package factory;
 
 import baseDatos.ConexionMongoDB;
@@ -15,7 +11,7 @@ import daos.PublicacionDAO;
 import daos.UsuarioDAO;
 
 /**
- * 
+ * @author Daniel Omar Alameda, Mario Alejandro Salcedo, David Sotelo Palafox
  * Esta clase actúa como una fábrica para crear instancias de los DAO correspondientes.
  */
 public class FabricaDAO implements IFabricaDAO {

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package baseDatos;
 
 import com.mongodb.MongoClientSettings;
@@ -16,7 +12,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
  *
- * @author HP
+ * @author Daniel Omar Alameda, Mario Alejandro Salcedo, David Sotelo Palafox
  */
 public class ConexionMongoDB implements IConexionBD {
 
