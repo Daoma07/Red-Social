@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pruebas;
 
 import dominio.Administrador;
@@ -24,7 +20,7 @@ import java.util.List;
 
 /**
  *
- * @author HP
+ * @author Daniel Omar Alameda, Mario Alejandro Salcedo, David Sotelo Palafox
  */
 public class Pruebas {
 
@@ -49,6 +45,12 @@ public class Pruebas {
 
         fachada.registrarUsuario(usuarioNormal);
 
+                Usuario u2 = new Normal("Mario Alejandro", "Salcedo",
+                "Rodriguez", "644589302", "Palacio", "cd. Obregón",
+                fechaNacimiento, Genero.MASCULINO,
+                new Credencial("mariosalcedo207068@potros.itson.com", "123"), new Municipio("Etchojoa", new Estado("Sonora")));
+        fachada.registrarUsuario(u2);
+        
         //Registrar cliente Administrador
         Calendar calendar2 = Calendar.getInstance();
         calendar2.set(Calendar.YEAR, 2000);
