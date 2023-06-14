@@ -21,7 +21,6 @@ import fachada.IFachadaPersistencia;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  *
@@ -119,7 +118,7 @@ public class Pruebas {
         //Mostrar Publicaciones
         List<Publicacion> publicaciones = fachada.consultarPublicaciones();
         for (int i = 0; i < publicaciones.size(); i++) {
-            publicaciones.get(i).toString();
+            System.out.println(publicaciones.get(i).toString());
         }
 
     }
