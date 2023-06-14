@@ -43,10 +43,13 @@ public class PublicacionValidacion {
 
         return errores;
     }
+
     /**
-     * Método List validarPublicacionComún que recibe como parámetro una publicación común
+     * Método List validarPublicacionComún que recibe como parámetro una
+     * publicación común
+     *
      * @param publicacionComun
-     * @return  Lista de Caracteres llamada errores.
+     * @return Lista de Caracteres llamada errores.
      */
     public List<String> validarPublicacionComun(Comun publicacionComun) {
         List<String> errores = new ArrayList<>();
