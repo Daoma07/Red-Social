@@ -41,10 +41,6 @@ public class ComentarioValidacion {
             errores.add("El campo PublicacionComun es requerido");
         }
 
-        if (comentario.getComentarios() == null) {
-            errores.add("El campo Comentarios es requerido");
-        }
-
         return errores;
     }
 

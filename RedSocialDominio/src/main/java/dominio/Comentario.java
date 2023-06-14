@@ -5,7 +5,7 @@
  */
 package dominio;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
 public class Comentario {
 
     private ObjectId id;
-    private Calendar fechaHora;
+    private Date fechaHora;
     private String contenido;
     private Normal usuarioNormal;
     private Comun publicacionComun;
@@ -29,13 +29,15 @@ public class Comentario {
     }
 
     /**
-     * Constructor que recibe la fecha y hora, el contenido, el usuario normal y la publicación común asociados al comentario.
+     * Constructor que recibe la fecha y hora, el contenido, el usuario normal y
+     * la publicación común asociados al comentario.
+     *
      * @param fechaHora La fecha y hora del comentario.
      * @param contenido El contenido del comentario.
      * @param usuarioNormal El usuario normal asociado al comentario.
      * @param publicacionComun La publicación común asociada al comentario.
      */
-    public Comentario(Calendar fechaHora, String contenido, Normal usuarioNormal, Comun publicacionComun) {
+    public Comentario(Date fechaHora, String contenido, Normal usuarioNormal, Comun publicacionComun) {
         this.fechaHora = fechaHora;
         this.contenido = contenido;
         this.usuarioNormal = usuarioNormal;
@@ -43,7 +45,10 @@ public class Comentario {
     }
 
     /**
-     * Constructor que recibe el ID, la fecha y hora, el contenido, el usuario normal, la publicación común y la lista de comentarios asociados al comentario.
+     * Constructor que recibe el ID, la fecha y hora, el contenido, el usuario
+     * normal, la publicación común y la lista de comentarios asociados al
+     * comentario.
+     *
      * @param id El ID del comentario.
      * @param fechaHora La fecha y hora del comentario.
      * @param contenido El contenido del comentario.
@@ -51,7 +56,7 @@ public class Comentario {
      * @param publicacionComun La publicación común asociada al comentario.
      * @param comentarios La lista de comentarios asociados al comentario.
      */
-    public Comentario(ObjectId id, Calendar fechaHora, String contenido, Normal usuarioNormal, Comun publicacionComun, List<Comentario> comentarios) {
+    public Comentario(ObjectId id, Date fechaHora, String contenido, Normal usuarioNormal, Comun publicacionComun, List<Comentario> comentarios) {
         this.id = id;
         this.fechaHora = fechaHora;
         this.contenido = contenido;
@@ -62,6 +67,7 @@ public class Comentario {
 
     /**
      * Obtiene el ID del comentario.
+     *
      * @return El ID del comentario.
      */
     public ObjectId getId() {
@@ -70,6 +76,7 @@ public class Comentario {
 
     /**
      * Establece el ID del comentario.
+     *
      * @param id El ID del comentario.
      */
     public void setId(ObjectId id) {
@@ -78,22 +85,25 @@ public class Comentario {
 
     /**
      * Obtiene la fecha y hora del comentario.
+     *
      * @return La fecha y hora del comentario.
      */
-    public Calendar getFechaHora() {
+    public Date getFechaHora() {
         return fechaHora;
     }
 
     /**
      * Establece la fecha y hora del comentario.
+     *
      * @param fechaHora La fecha y hora del comentario.
      */
-    public void setFechaHora(Calendar fechaHora) {
+    public void setFechaHora(Date fechaHora) {
         this.fechaHora = fechaHora;
     }
 
     /**
      * Obtiene el contenido del comentario.
+     *
      * @return El contenido del comentario.
      */
     public String getContenido() {
@@ -102,6 +112,7 @@ public class Comentario {
 
     /**
      * Establece el contenido del comentario.
+     *
      * @param contenido El contenido del comentario.
      */
     public void setContenido(String contenido) {
@@ -110,6 +121,7 @@ public class Comentario {
 
     /**
      * Obtiene el usuario normal asociado al comentario.
+     *
      * @return El usuario normal asociado al comentario.
      */
     public Normal getUsuarioNormal() {
@@ -118,6 +130,7 @@ public class Comentario {
 
     /**
      * Establece el usuario normal asociado al comentario.
+     *
      * @param usuarioNormal El usuario normal asociado al comentario.
      */
     public void setUsuarioNormal(Normal usuarioNormal) {
@@ -126,6 +139,7 @@ public class Comentario {
 
     /**
      * Obtiene la publicación común asociada al comentario.
+     *
      * @return La publicación común asociada al comentario.
      */
     public Comun getPublicacionComun() {
@@ -134,6 +148,7 @@ public class Comentario {
 
     /**
      * Establece la publicación común asociada al comentario.
+     *
      * @param publicacionComun La publicación común asociada al comentario.
      */
     public void setPublicacionComun(Comun publicacionComun) {
@@ -142,6 +157,7 @@ public class Comentario {
 
     /**
      * Obtiene la lista de comentarios asociados al comentario.
+     *
      * @return La lista de comentarios asociados al comentario.
      */
     public List<Comentario> getComentarios() {
@@ -150,13 +166,13 @@ public class Comentario {
 
     /**
      * Establece la lista de comentarios asociados al comentario.
+     *
      * @param comentarios La lista de comentarios asociados al comentario.
      */
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 7;

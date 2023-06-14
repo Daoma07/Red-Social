@@ -7,6 +7,7 @@ package pruebas;
 
 import dominio.Administrador;
 import dominio.Anclada;
+import dominio.Comentario;
 import dominio.Comun;
 import dominio.Credencial;
 import dominio.Estado;
@@ -19,6 +20,7 @@ import fachada.FachadaPersistencia;
 import fachada.IFachadaPersistencia;
 import java.util.Calendar;
 import java.util.Date;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -62,7 +64,7 @@ public class Pruebas {
         fachada.registrarUsuario(usuarioAdministrador);
 
         //Registrar publicación Comun por un usuario Normal
-        Usuario usuario = new Usuario();
+        Usuario usuario = new Normal();
         usuario.setId(usuarioNormal.getId());
         usuario.setAvatar(usuarioNormal.getAvatar());
         calendar = Calendar.getInstance();
@@ -80,10 +82,39 @@ public class Pruebas {
         Publicacion publicacionAnclada = new Anclada(usuarioAdmin, hoy, "Las noticias", "Este día hara mucho calor");
 
         fachada.registrarPublicacionAnclada((Anclada) publicacionAnclada);
-        
-        
+
         //Registrar Comentario 
-        
+        calendar = Calendar.getInstance();
+        hoy = calendar.getTime();
+
+        Comun publicacion = new Comun();
+        publicacion.setId(publicacionComun.getId());
+        publicacion.setTitulo(publicacionComun.getTitulo());
+        Comentario comentario = new Comentario(hoy, "Es muy interestane",
+                (Normal) usuario,
+                publicacion);
+        fachada.registrarComentario(comentario);
+
+        //Se elimina la publicación comun
+        fachada.eliminarPublicacion(publicacionComun);
+
+        //Se elemina un comentario
+        fachada.eliminarComentario(comentario);
+
+        //Registrar nuevamente publicación Comun por un usuario Normal
+        usuario = new Normal();
+        usuario.setId(usuarioNormal.getId());
+        usuario.setAvatar(usuarioNormal.getAvatar());
+        calendar = Calendar.getInstance();
+        hoy = calendar.getTime();
+        publicacionComun = new Comun(usuario, hoy, "¿Qué es el universo?", "Solo se que nose nada");
+
+        fachada.registrarPublicacionComun((Comun) publicacionComun);
+        //Editar Publicación
+        publicacionComun.toString();
+        publicacionComun.setContenido("Lo edite");
+        fachada.editarPublicacionComun((Comun) publicacionComun);
+        publicacionComun.toString();
     }
 
 }
