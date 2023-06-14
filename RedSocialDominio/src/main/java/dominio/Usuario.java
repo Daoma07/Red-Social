@@ -5,7 +5,7 @@
  */
 package dominio;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
@@ -22,7 +22,7 @@ public class Usuario {
     private String telefono;
     private String avatar;
     private String ciudad;
-    private Calendar fechaNacimiento;
+    private Date fechaNacimiento;
     private Genero genero;
     private Credencial credencial;
     private Municipio municipio;
@@ -36,6 +36,7 @@ public class Usuario {
 
     /**
      * Constructor de la clase Usuario.
+     *
      * @param nombres Los nombres del usuario.
      * @param apellidoPaterno El apellido paterno del usuario.
      * @param apellidoMaterno El apellido materno del usuario.
@@ -47,7 +48,7 @@ public class Usuario {
      * @param credencial Las credenciales del usuario.
      * @param municipio El municipio del usuario.
      */
-    public Usuario(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String avatar, String ciudad, Calendar fechaNacimiento, Genero genero, Credencial credencial, Municipio municipio) {
+    public Usuario(String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String avatar, String ciudad, Date fechaNacimiento, Genero genero, Credencial credencial, Municipio municipio) {
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -62,6 +63,7 @@ public class Usuario {
 
     /**
      * Constructor de la clase Usuario.
+     *
      * @param id El ID del usuario.
      * @param nombres Los nombres del usuario.
      * @param apellidoPaterno El apellido paterno del usuario.
@@ -74,7 +76,7 @@ public class Usuario {
      * @param credencial Las credenciales del usuario.
      * @param municipio El municipio del usuario.
      */
-    public Usuario(ObjectId id, String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String avatar, String ciudad, Calendar fechaNacimiento, Genero genero, Credencial credencial, Municipio municipio) {
+    public Usuario(ObjectId id, String nombres, String apellidoPaterno, String apellidoMaterno, String telefono, String avatar, String ciudad, Date fechaNacimiento, Genero genero, Credencial credencial, Municipio municipio) {
         this.id = id;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
@@ -90,6 +92,7 @@ public class Usuario {
 
     /**
      * Obtiene el ID del usuario.
+     *
      * @return El ID del usuario.
      */
     public ObjectId getId() {
@@ -98,6 +101,7 @@ public class Usuario {
 
     /**
      * Establece el ID del usuario.
+     *
      * @param id El ID del usuario.
      */
     public void setId(ObjectId id) {
@@ -106,6 +110,7 @@ public class Usuario {
 
     /**
      * Obtiene los nombres del usuario.
+     *
      * @return Los nombres del usuario.
      */
     public String getNombres() {
@@ -114,6 +119,7 @@ public class Usuario {
 
     /**
      * Establece los nombres del usuario.
+     *
      * @param nombres Los nombres del usuario.
      */
     public void setNombres(String nombres) {
@@ -122,6 +128,7 @@ public class Usuario {
 
     /**
      * Obtiene el apellido paterno del usuario.
+     *
      * @return El apellido paterno del usuario.
      */
     public String getApellidoPaterno() {
@@ -130,6 +137,7 @@ public class Usuario {
 
     /**
      * Establece el apellido paterno del usuario.
+     *
      * @param apellidoPaterno El apellido paterno del usuario.
      */
     public void setApellidoPaterno(String apellidoPaterno) {
@@ -138,14 +146,16 @@ public class Usuario {
 
     /**
      * Obtiene el apellido materno del usuario.
+     *
      * @return El apellido materno del usuario.
      */
     public String getApellidoMaterno() {
         return apellidoMaterno;
     }
-    
+
     /**
      * Establece el apellido materno del usuario.
+     *
      * @param apellidoMaterno El apellido materno del usuario.
      */
     public void setApellidoMaterno(String apellidoMaterno) {
@@ -154,6 +164,7 @@ public class Usuario {
 
     /**
      * Obtiene el número de teléfono del usuario.
+     *
      * @return El número de teléfono del usuario.
      */
     public String getTelefono() {
@@ -162,6 +173,7 @@ public class Usuario {
 
     /**
      * Establece el número de teléfono del usuario.
+     *
      * @param telefono El número de teléfono del usuario.
      */
     public void setTelefono(String telefono) {
@@ -170,6 +182,7 @@ public class Usuario {
 
     /**
      * Obtiene la URL del avatar del usuario.
+     *
      * @return La URL del avatar del usuario.
      */
     public String getAvatar() {
@@ -178,6 +191,7 @@ public class Usuario {
 
     /**
      * Establece la URL del avatar del usuario.
+     *
      * @param avatar La URL del avatar del usuario.
      */
     public void setAvatar(String avatar) {
@@ -186,6 +200,7 @@ public class Usuario {
 
     /**
      * Obtiene la ciudad del usuario.
+     *
      * @return La ciudad del usuario.
      */
     public String getCiudad() {
@@ -194,6 +209,7 @@ public class Usuario {
 
     /**
      * Establece la ciudad del usuario.
+     *
      * @param ciudad La ciudad del usuario.
      */
     public void setCiudad(String ciudad) {
@@ -202,22 +218,25 @@ public class Usuario {
 
     /**
      * Obtiene la fecha de nacimiento del usuario.
+     *
      * @return La fecha de nacimiento del usuario.
      */
-    public Calendar getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
     /**
      * Establece la fecha de nacimiento del usuario.
+     *
      * @param fechaNacimiento La fecha de nacimiento del usuario.
      */
-    public void setFechaNacimiento(Calendar fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
     /**
      * Obtiene el género del usuario.
+     *
      * @return El género del usuario.
      */
     public Genero getGenero() {
@@ -226,6 +245,7 @@ public class Usuario {
 
     /**
      * Establece el género del usuario.
+     *
      * @param genero El género del usuario.
      */
     public void setGenero(Genero genero) {
@@ -234,6 +254,7 @@ public class Usuario {
 
     /**
      * Obtiene las credenciales del usuario.
+     *
      * @return Las credenciales del usuario.
      */
     public Credencial getCredencial() {
@@ -242,6 +263,7 @@ public class Usuario {
 
     /**
      * Establece las credenciales del usuario.
+     *
      * @param credencial Las credenciales del usuario.
      */
     public void setCredencial(Credencial credencial) {
@@ -250,6 +272,7 @@ public class Usuario {
 
     /**
      * Obtiene el municipio del usuario.
+     *
      * @return El municipio del usuario.
      */
     public Municipio getMunicipio() {
@@ -258,6 +281,7 @@ public class Usuario {
 
     /**
      * Establece el municipio del usuario.
+     *
      * @param municipio El municipio del usuario.
      */
     public void setMunicipio(Municipio municipio) {
@@ -266,6 +290,7 @@ public class Usuario {
 
     /**
      * Obtiene las publicaciones comunes del usuario.
+     *
      * @return Las publicaciones comunes del usuario.
      */
     public List<Comun> getPublicacionesComunes() {
@@ -274,6 +299,7 @@ public class Usuario {
 
     /**
      * Establece las publicaciones comunes del usuario.
+     *
      * @param publicacionesComunes Las publicaciones comunes del usuario.
      */
     public void setPublicacionesComunes(List<Comun> publicacionesComunes) {

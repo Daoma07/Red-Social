@@ -8,11 +8,13 @@ package daos;
 import baseDatos.IConexionBD;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import dominio.Usuario;
 import excepciones.MongoDBException;
 import interfaces.IUsuarioDAO;
 import java.util.List;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import validaciones.UsuarioValidacion;
 
 /**
@@ -27,10 +29,11 @@ public class UsuarioDAO implements IUsuarioDAO {
     private UsuarioValidacion usuarioValidacion;
 
     /**
-    * Constructor de la clase UsuarioDAO.
-    *
-    * @param CONEXION La instancia de IConexionBD utilizada para establecer la conexión con la base de datos.
-    */
+     * Constructor de la clase UsuarioDAO.
+     *
+     * @param CONEXION La instancia de IConexionBD utilizada para establecer la
+     * conexión con la base de datos.
+     */
     public UsuarioDAO(IConexionBD CONEXION) {
         this.CONEXION = CONEXION;
         this.BASE_DATOS = CONEXION.getBaseDatos();
@@ -39,11 +42,12 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     /**
-    * Registra un usuario en la base de datos.
-    *
-    * @param usuario El usuario a registrar.
-    * @return El usuario registrado, o null si ocurrió un error o el avatar o correo electrónico ya están en uso.
-    */
+     * Registra un usuario en la base de datos.
+     *
+     * @param usuario El usuario a registrar.
+     * @return El usuario registrado, o null si ocurrió un error o el avatar o
+     * correo electrónico ya están en uso.
+     */
     @Override
     public Usuario registrarUsuario(Usuario usuario) throws MongoDBException {
         try {
@@ -67,29 +71,32 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     /**
-    * Verifica si existe un usuario con el avatar o correo electrónico dado en la base de datos.
-    *
-    * @param avatar El avatar del usuario a verificar.
-    * @param correo El correo electrónico del usuario a verificar.
-    * @return true si existe un usuario con el avatar o correo electrónico dado, false de lo contrario.
-    */
+     * Verifica si existe un usuario con el avatar o correo electrónico dado en
+     * la base de datos.
+     *
+     * @param avatar El avatar del usuario a verificar.
+     * @param correo El correo electrónico del usuario a verificar.
+     * @return true si existe un usuario con el avatar o correo electrónico
+     * dado, false de lo contrario.
+     */
     @Override
     public boolean existeUsuario(String avatar, String correo) throws MongoDBException {
         try {
             List<String> errores = usuarioValidacion.validarExistencia(avatar, correo);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
-                throw new MongoDBException("Los Datos no son validos: " + mensajeError);
+                throw new MongoDBException("Los Datos no son válidos: " + mensajeError);
             }
-            Document filtro = new Document("$or",
-                    new Document[]{
-                        new Document("avatar", avatar),
-                        new Document("credencial.correo", correo)
-                    }
+
+            Bson filtro = Filters.or(
+                    Filters.eq("avatar", avatar),
+                    Filters.eq("credencial.correo", correo)
             );
-            return COLECCION.countDocuments(filtro) > 0;
+
+            long count = COLECCION.countDocuments(filtro);
+            return count > 0;
         } catch (MongoDBException e) {
-            System.out.println("Error al registrar el usuario: " + e.getMessage());
+            System.out.println("Error al verificar la existencia del usuario: " + e.getMessage());
             return false;
         }
     }

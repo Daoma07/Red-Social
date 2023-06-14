@@ -24,8 +24,13 @@ public class Estado {
     public Estado() {
     }
 
+    public Estado(String nombre) {
+        this.nombre = nombre;
+    }
+
     /**
      * Constructor que recibe el nombre y la lista de municipios del estado.
+     *
      * @param nombre El nombre del estado.
      * @param municipos La lista de municipios del estado.
      */
@@ -35,7 +40,9 @@ public class Estado {
     }
 
     /**
-     * Constructor que recibe el ID, el nombre y la lista de municipios del estado.
+     * Constructor que recibe el ID, el nombre y la lista de municipios del
+     * estado.
+     *
      * @param id El ID del estado.
      * @param nombre El nombre del estado.
      * @param municipos La lista de municipios del estado.
@@ -48,6 +55,7 @@ public class Estado {
 
     /**
      * Obtiene el ID del estado.
+     *
      * @return El ID del estado.
      */
     public ObjectId getId() {
@@ -56,6 +64,7 @@ public class Estado {
 
     /**
      * Establece el ID del estado.
+     *
      * @param id El ID del estado.
      */
     public void setId(ObjectId id) {
@@ -64,6 +73,7 @@ public class Estado {
 
     /**
      * Obtiene el nombre del estado.
+     *
      * @return El nombre del estado.
      */
     public String getNombre() {
@@ -72,6 +82,7 @@ public class Estado {
 
     /**
      * Establece el nombre del estado.
+     *
      * @param nombre El nombre del estado.
      */
     public void setNombre(String nombre) {
@@ -80,6 +91,7 @@ public class Estado {
 
     /**
      * Obtiene la lista de municipios del estado.
+     *
      * @return La lista de municipios del estado.
      */
     public List<Municipio> getMunicipos() {
@@ -88,6 +100,7 @@ public class Estado {
 
     /**
      * Establece la lista de municipios del estado.
+     *
      * @param municipos La lista de municipios del estado.
      */
     public void setMunicipos(List<Municipio> municipos) {

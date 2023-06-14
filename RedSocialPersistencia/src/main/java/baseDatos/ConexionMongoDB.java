@@ -24,10 +24,10 @@ public class ConexionMongoDB implements IConexionBD {
     private MongoDatabase baseDatos;
 
     /**
-    * Devuelve la instancia de la base de datos MongoDB.
-    *
-    * @return La instancia de la base de datos MongoDB.
-    */
+     * Devuelve la instancia de la base de datos MongoDB.
+     *
+     * @return La instancia de la base de datos MongoDB.
+     */
     @Override
     public MongoDatabase getBaseDatos() {
         if (baseDatos == null) {

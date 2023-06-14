@@ -5,7 +5,7 @@
  */
 package dominio;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -15,10 +15,10 @@ import org.bson.types.ObjectId;
 public class Publicacion {
 
     private ObjectId id;
-    private Calendar fechaHoraCreacion;
+    private Date fechaHoraCreacion;
     private String titulo;
     private String contenido;
-    private Calendar fechaHoraEdicion;
+    private Date fechaHoraEdicion;
 
     /**
      * Constructor por defecto de la clase Publicacion.
@@ -26,14 +26,21 @@ public class Publicacion {
     public Publicacion() {
     }
 
+    public Publicacion(Date fechaHoraCreacion, String titulo, String contenido) {
+        this.fechaHoraCreacion = fechaHoraCreacion;
+        this.titulo = titulo;
+        this.contenido = contenido;
+    }
+
     /**
      * Constructor de la clase Publicacion.
+     *
      * @param fechaHoraCreacion La fecha y hora de creación de la publicación.
      * @param titulo El título de la publicación.
      * @param contenido El contenido de la publicación.
      * @param fechaHoraEdicion La fecha y hora de edición de la publicación.
      */
-    public Publicacion(Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Publicacion(Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
@@ -42,13 +49,14 @@ public class Publicacion {
 
     /**
      * Constructor de la clase Publicacion.
+     *
      * @param id El ID de la publicación.
      * @param fechaHoraCreacion La fecha y hora de creación de la publicación.
      * @param titulo El título de la publicación.
      * @param contenido El contenido de la publicación.
      * @param fechaHoraEdicion La fecha y hora de edición de la publicación.
      */
-    public Publicacion(ObjectId id, Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Publicacion(ObjectId id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         this.id = id;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
@@ -58,6 +66,7 @@ public class Publicacion {
 
     /**
      * Obtiene el ID de la publicación.
+     *
      * @return El ID de la publicación.
      */
     public ObjectId getId() {
@@ -66,6 +75,7 @@ public class Publicacion {
 
     /**
      * Establece el ID de la publicación.
+     *
      * @param id El ID de la publicación.
      */
     public void setId(ObjectId id) {
@@ -74,22 +84,25 @@ public class Publicacion {
 
     /**
      * Obtiene la fecha y hora de creación de la publicación.
+     *
      * @return La fecha y hora de creación de la publicación.
      */
-    public Calendar getFechaHoraCreacion() {
+    public Date getFechaHoraCreacion() {
         return fechaHoraCreacion;
     }
 
     /**
      * Establece la fecha y hora de creación de la publicación.
+     *
      * @param fechaHoraCreacion La fecha y hora de creación de la publicación.
      */
-    public void setFechaHoraCreacion(Calendar fechaHoraCreacion) {
+    public void setFechaHoraCreacion(Date fechaHoraCreacion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
     }
 
     /**
      * Obtiene el título de la publicación.
+     *
      * @return El título de la publicación.
      */
     public String getTitulo() {
@@ -98,6 +111,7 @@ public class Publicacion {
 
     /**
      * Establece el título de la publicación.
+     *
      * @param titulo El título de la publicación.
      */
     public void setTitulo(String titulo) {
@@ -106,6 +120,7 @@ public class Publicacion {
 
     /**
      * Obtiene el contenido de la publicación.
+     *
      * @return El contenido de la publicación.
      */
     public String getContenido() {
@@ -114,6 +129,7 @@ public class Publicacion {
 
     /**
      * Establece el contenido de la publicación.
+     *
      * @param contenido El contenido de la publicación.
      */
     public void setContenido(String contenido) {
@@ -122,17 +138,19 @@ public class Publicacion {
 
     /**
      * Obtiene la fecha y hora de edición de la publicación.
+     *
      * @return La fecha y hora de edición de la publicación.
      */
-    public Calendar getFechaHoraEdicion() {
+    public Date getFechaHoraEdicion() {
         return fechaHoraEdicion;
     }
 
     /**
      * Establece la fecha y hora de edición de la publicación.
+     *
      * @param fechaHoraEdicion La fecha y hora de edición de la publicación.
      */
-    public void setFechaHoraEdicion(Calendar fechaHoraEdicion) {
+    public void setFechaHoraEdicion(Date fechaHoraEdicion) {
         this.fechaHoraEdicion = fechaHoraEdicion;
     }
 

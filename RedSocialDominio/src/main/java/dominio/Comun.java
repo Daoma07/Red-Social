@@ -5,7 +5,7 @@
  */
 package dominio;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -25,41 +25,58 @@ public class Comun extends Publicacion {
 
     /**
      * Constructor que recibe el usuario asociado a la publicación común.
+     *
      * @param usuario El usuario asociado a la publicación común.
      */
     public Comun(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    public Comun(Usuario usuario, Date fechaHoraCreacion, String titulo, String contenido) {
+        super(fechaHoraCreacion, titulo, contenido);
+        this.usuario = usuario;
+    }
+
     /**
-     * Constructor que recibe el usuario asociado, la fecha y hora de creación, el título, el contenido y la fecha y hora de edición de la publicación común.
+     * Constructor que recibe el usuario asociado, la fecha y hora de creación,
+     * el título, el contenido y la fecha y hora de edición de la publicación
+     * común.
+     *
      * @param usuario El usuario asociado a la publicación común.
-     * @param fechaHoraCreacion La fecha y hora de creación de la publicación común.
+     * @param fechaHoraCreacion La fecha y hora de creación de la publicación
+     * común.
      * @param titulo El título de la publicación común.
      * @param contenido El contenido de la publicación común.
-     * @param fechaHoraEdicion La fecha y hora de edición de la publicación común.
+     * @param fechaHoraEdicion La fecha y hora de edición de la publicación
+     * común.
      */
-    public Comun(Usuario usuario, Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Comun(Usuario usuario, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         super(fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
         this.usuario = usuario;
     }
 
     /**
-     * Constructor que recibe el usuario asociado, el ID, la fecha y hora de creación, el título, el contenido y la fecha y hora de edición de la publicación común.
+     * Constructor que recibe el usuario asociado, el ID, la fecha y hora de
+     * creación, el título, el contenido y la fecha y hora de edición de la
+     * publicación común.
+     *
      * @param usuario El usuario asociado a la publicación común.
      * @param id El ID de la publicación común.
-     * @param fechaHoraCreacion La fecha y hora de creación de la publicación común.
+     * @param fechaHoraCreacion La fecha y hora de creación de la publicación
+     * común.
      * @param titulo El título de la publicación común.
      * @param contenido El contenido de la publicación común.
-     * @param fechaHoraEdicion La fecha y hora de edición de la publicación común.
+     * @param fechaHoraEdicion La fecha y hora de edición de la publicación
+     * común.
      */
-    public Comun(Usuario usuario, ObjectId id, Calendar fechaHoraCreacion, String titulo, String contenido, Calendar fechaHoraEdicion) {
+    public Comun(Usuario usuario, ObjectId id, Date fechaHoraCreacion, String titulo, String contenido, Date fechaHoraEdicion) {
         super(id, fechaHoraCreacion, titulo, contenido, fechaHoraEdicion);
         this.usuario = usuario;
     }
 
     /**
      * Obtiene el usuario asociado a la publicación común.
+     *
      * @return El usuario asociado a la publicación común.
      */
     public Usuario getUsuario() {
@@ -68,6 +85,7 @@ public class Comun extends Publicacion {
 
     /**
      * Establece el usuario asociado a la publicación común.
+     *
      * @param usuario El usuario asociado a la publicación común.
      */
     public void setUsuario(Usuario usuario) {
@@ -76,6 +94,7 @@ public class Comun extends Publicacion {
 
     /**
      * Obtiene la lista de comentarios asociados a la publicación común.
+     *
      * @return La lista de comentarios asociados a la publicación común.
      */
     public List<Comentario> getComentarios() {
@@ -84,7 +103,9 @@ public class Comun extends Publicacion {
 
     /**
      * Establece la lista de comentarios asociados a la publicación común.
-     * @param comentarios La lista de comentarios asociados a la publicación común.
+     *
+     * @param comentarios La lista de comentarios asociados a la publicación
+     * común.
      */
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
