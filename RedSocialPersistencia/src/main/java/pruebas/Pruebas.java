@@ -80,6 +80,10 @@ public class Pruebas {
         Publicacion publicacionAnclada = new Anclada(usuarioAdmin, hoy, "Las noticias", "Este día hara mucho calor");
 
         fachada.registrarPublicacionAnclada((Anclada) publicacionAnclada);
+        
+        
+        //Registrar Comentario 
+        
     }
 
 }
