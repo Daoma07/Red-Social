@@ -20,6 +20,7 @@ import fachada.FachadaPersistencia;
 import fachada.IFachadaPersistencia;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -110,11 +111,17 @@ public class Pruebas {
         publicacionComun = new Comun(usuario, hoy, "¿Qué es el universo?", "Solo se que nose nada");
 
         fachada.registrarPublicacionComun((Comun) publicacionComun);
+
         //Editar Publicación
-        publicacionComun.toString();
         publicacionComun.setContenido("Lo edite");
         fachada.editarPublicacionComun((Comun) publicacionComun);
-        publicacionComun.toString();
+
+        //Mostrar Publicaciones
+        List<Publicacion> publicaciones = fachada.consultarPublicaciones();
+        for (int i = 0; i < publicaciones.size(); i++) {
+            publicaciones.get(i).toString();
+        }
+
     }
 
 }

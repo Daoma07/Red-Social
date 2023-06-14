@@ -34,6 +34,11 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String nombres, Credencial credencial) {
+        this.nombres = nombres;
+        this.credencial = credencial;
+    }
+
     /**
      * Constructor de la clase Usuario.
      *
@@ -266,10 +271,39 @@ public class Usuario {
      *
      * @param credencial Las credenciales del usuario.
      */
-    public void setCredencial(Credencial credencial) {
-        this.credencial = credencial;
-    }
-
+//    public void setCredencial(Credencial credencial) {
+//        this.credencial = credencial;
+//    }
+//
+//    public String getCorreo() {
+//        return this.credencial.getCorreo();
+//    }
+//    /**
+//     * Establece el correo de las credenciales.
+//     *
+//     * @param correo El correo de las credenciales.
+//     */
+//    public void setCorreo(String correo) {
+//        this.credencial.setCorreo(correo);
+//    }
+//
+//    /**
+//     * Obtiene la contraseña de las credenciales.
+//     *
+//     * @return La contraseña de las credenciales.
+//     */
+//    public String getContrasenia() {
+//        return this.credencial.getContrasenia();
+//    }
+//
+//    /**
+//     * Establece la contraseña de las credenciales.
+//     *
+//     * @param contrasenia La contraseña de las credenciales.
+//     */
+//    public void setContrasenia(String contrasenia) {
+//        this.credencial.setContrasenia(contrasenia);
+//    }
     /**
      * Obtiene el municipio del usuario.
      *

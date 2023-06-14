@@ -5,6 +5,8 @@
  */
 package dominio;
 
+import org.bson.types.ObjectId;
+
 /**
  * Clase que representa las credenciales de un usuario en el sistema.
  */
@@ -21,6 +23,7 @@ public class Credencial {
 
     /**
      * Constructor que recibe el correo y la contraseña de las credenciales.
+     *
      * @param correo El correo de las credenciales.
      * @param contrasenia La contraseña de las credenciales.
      */
@@ -31,6 +34,7 @@ public class Credencial {
 
     /**
      * Obtiene el correo de las credenciales.
+     *
      * @return El correo de las credenciales.
      */
     public String getCorreo() {
@@ -39,6 +43,7 @@ public class Credencial {
 
     /**
      * Establece el correo de las credenciales.
+     *
      * @param correo El correo de las credenciales.
      */
     public void setCorreo(String correo) {
@@ -47,6 +52,7 @@ public class Credencial {
 
     /**
      * Obtiene la contraseña de las credenciales.
+     *
      * @return La contraseña de las credenciales.
      */
     public String getContrasenia() {
@@ -55,6 +61,7 @@ public class Credencial {
 
     /**
      * Establece la contraseña de las credenciales.
+     *
      * @param contrasenia La contraseña de las credenciales.
      */
     public void setContrasenia(String contrasenia) {

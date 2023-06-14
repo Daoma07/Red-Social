@@ -29,9 +29,9 @@ public class FachadaPersistencia implements IFachadaPersistencia {
     private final IUsuarioDAO usuarioDAO;
 
     /**
-    * Crea una instancia de la clase FachadaPersistencia.
-    * Inicializa los DAO necesarios utilizando una fábrica de DAO.
-    */
+     * Crea una instancia de la clase FachadaPersistencia. Inicializa los DAO
+     * necesarios utilizando una fábrica de DAO.
+     */
     public FachadaPersistencia() {
         IFabricaDAO fabricaDAO = new FabricaDAO();
         this.comentarioDAO = fabricaDAO.crearComentarioDAO();

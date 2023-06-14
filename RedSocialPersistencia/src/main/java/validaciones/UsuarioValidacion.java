@@ -20,6 +20,7 @@ public class UsuarioValidacion {
 
     //Validaciones
     public List<String> validarUsuario(Usuario usuario) {
+
         List<String> errores = new ArrayList<>();
 
         // Validar los atributos del usuario
