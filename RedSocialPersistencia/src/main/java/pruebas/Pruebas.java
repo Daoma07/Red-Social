@@ -1,4 +1,3 @@
-
 package pruebas;
 
 import dominio.Administrador;
@@ -45,12 +44,12 @@ public class Pruebas {
 
         fachada.registrarUsuario(usuarioNormal);
 
-                Usuario u2 = new Normal("Mario Alejandro", "Salcedo",
+        Usuario u2 = new Normal("Mario Alejandro", "Salcedo",
                 "Rodriguez", "644589302", "Palacio", "cd. Obregón",
                 fechaNacimiento, Genero.MASCULINO,
                 new Credencial("mariosalcedo207068@potros.itson.com", "123"), new Municipio("Etchojoa", new Estado("Sonora")));
         fachada.registrarUsuario(u2);
-        
+
         //Registrar cliente Administrador
         Calendar calendar2 = Calendar.getInstance();
         calendar2.set(Calendar.YEAR, 2000);
