@@ -30,7 +30,7 @@ public class AuthFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
-    private static String[] pathsPublicos = {"login.jsp", "auth"};
+    private static String[] pathsPublicos = {"login.jsp", "login", "resources/css/login.css", "register.jap", "resources/css/register.css"};
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

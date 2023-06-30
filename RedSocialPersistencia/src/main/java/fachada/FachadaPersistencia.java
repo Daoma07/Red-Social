@@ -1,4 +1,3 @@
-
 package fachada;
 
 import dominio.Anclada;
@@ -146,13 +145,25 @@ public class FachadaPersistencia implements IFachadaPersistencia {
     /**
      * Verifica la existencia de un usuario en la base de datos.
      *
-     * @param avatar el avatar del usuario
      * @param correo el correo electrónico del usuario
+     * @param contrasenia la contrasenia del usuario
      * @return true si el usuario existe, false en caso contrario
      */
     @Override
-    public boolean existeUsuario(String avatar, String correo) {
-        return usuarioDAO.existeUsuario(avatar, correo);
+    public boolean existeUsuario(String correo, String contrasenia) {
+        return usuarioDAO.existeUsuario(correo, contrasenia);
     }
 
+    /**
+     * Busca un usuario por su correo y contraseña.
+     *
+     * @param correo El correo del usuario a buscar.
+     * @param contrasenia La contraseña del usuario a buscar.
+     * @return El usuario encontrado, o null si no se encuentra ningún usuario
+     * con las credenciales proporcionadas.
+     */
+    @Override
+    public Usuario buscarUsuarioPorCredenciales(String correo, String contrasenia) {
+        return usuarioDAO.buscarUsuarioPorCredenciales(correo, contrasenia);
+    }
 }

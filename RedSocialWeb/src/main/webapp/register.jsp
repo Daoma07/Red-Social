@@ -1,10 +1,17 @@
+<%-- 
+    Document   : register
+    Created on : 29/06/2023, 03:55:06 PM
+    Author     : HP
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="redSocial_register.css">
+        <link href="resources/css/register.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="container">

@@ -5,12 +5,14 @@
  */
 package factory;
 
+import dominio.Usuario;
 import interfaces.IComentarioDAO;
 import interfaces.IPublicacionDAO;
 import interfaces.IUsuarioDAO;
 
 /**
- * Esta interfaz define los métodos para crear instancias de los DAO correspondientes.
+ * Esta interfaz define los métodos para crear instancias de los DAO
+ * correspondientes.
  */
 public interface IFabricaDAO {
 
@@ -34,5 +36,5 @@ public interface IFabricaDAO {
      * @return una instancia de IUsuarioDAO
      */
     public IUsuarioDAO crearUsuarioDAO();
-    
+
 }

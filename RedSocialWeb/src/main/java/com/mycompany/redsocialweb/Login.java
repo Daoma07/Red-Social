@@ -5,14 +5,22 @@
  */
 package com.mycompany.redsocialweb;
 
+import com.mycompany.redsocialweb.Exception.NegocioException;
+import com.mycompany.redsocialweb.factory.FabricaBO;
+import com.mycompany.redsocialweb.factory.IFabricaBO;
+import com.mycompany.redsocialweb.interfaces.IUsuarioBO;
+import dominio.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,6 +29,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Login", urlPatterns = {"/login"}, initParams = {
     @WebInitParam(name = "Name", value = "Value")})
 public class Login extends HttpServlet {
+
+    IUsuarioBO usuarioBO;
+
+    public Login() {
+        IFabricaBO fabricaBO = new FabricaBO();
+        this.usuarioBO = fabricaBO.crearUsuarioBO();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,36 +46,39 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        //aqui se  valdia se existe el usuario con la base de datos
+        String correo = request.getParameter("correo");
+        String contraseña = request.getParameter("contrasenia");
+        //solicitar inicio de sesion en las bo
+
+        Usuario usuarioValidado;
+        try {
+            usuarioValidado = usuarioBO.buscarUsuarioPorCredenciales(correo, contraseña);
+            if (usuarioValidado != null) {
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("usuario", usuarioValidado);
+                getServletContext().getRequestDispatcher("/index.html")
+                        .forward(request, response);
+            } else {
+                getServletContext().getRequestDispatcher("/register.jsp")
+                        .forward(request, response);
+            }
+        } catch (NegocioException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    //cerrar sesion
+    protected void processLogout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession sesion = request.getSession();
+        sesion.invalidate();
+        getServletContext().getRequestDispatcher("/login.jsp")
+                .forward(request, response);
+
     }
 
     /**
@@ -74,7 +92,17 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String action = request.getParameter("action");
+        if (action != null && action.equalsIgnoreCase("login")) {
+            processLogin(request, response);
+            return;
+        } else if (action != null && action.equalsIgnoreCase("logout")) {
+            processLogout(request, response);
+            return;
+        }
+
+        processLogin(request, response);
     }
 
     /**

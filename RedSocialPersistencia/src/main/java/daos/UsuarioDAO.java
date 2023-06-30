@@ -1,4 +1,3 @@
-
 package daos;
 
 import baseDatos.IConexionBD;
@@ -70,23 +69,23 @@ public class UsuarioDAO implements IUsuarioDAO {
      * Verifica si existe un usuario con el avatar o correo electrónico dado en
      * la base de datos.
      *
-     * @param avatar El avatar del usuario a verificar.
-     * @param correo El correo electrónico del usuario a verificar.
+     * @param correo El corre del usuario a verificar.
+     * @param contrasenia La contrasenia del usuario a verificar.
      * @return true si existe un usuario con el avatar o correo electrónico
      * dado, false de lo contrario.
      */
     @Override
-    public boolean existeUsuario(String avatar, String correo) throws MongoDBException {
+    public boolean existeUsuario(String correo, String contrasenia) throws MongoDBException {
         try {
-            List<String> errores = usuarioValidacion.validarExistencia(avatar, correo);
+            List<String> errores = usuarioValidacion.validarExistencia(correo, contrasenia);
             if (!errores.isEmpty()) {
                 String mensajeError = String.join(", ", errores);
                 throw new MongoDBException("Los Datos no son válidos: " + mensajeError);
             }
 
             Bson filtro = Filters.or(
-                    Filters.eq("avatar", avatar),
-                    Filters.eq("credencial.correo", correo)
+                    Filters.eq("credencial.correo", correo),
+                    Filters.eq("credencial.contrasenia", contrasenia)
             );
 
             long count = COLECCION.countDocuments(filtro);
@@ -95,6 +94,31 @@ public class UsuarioDAO implements IUsuarioDAO {
             System.out.println("Error al verificar la existencia del usuario: " + e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * Busca un usuario por su correo y contraseña.
+     *
+     * @param correo El correo del usuario a buscar.
+     * @param contrasenia La contraseña del usuario a buscar.
+     * @return El usuario encontrado, o null si no se encuentra ningún usuario
+     * con las credenciales proporcionadas.
+     */
+    @Override
+    public Usuario buscarUsuarioPorCredenciales(String correo, String contrasenia) {
+        try {
+            // Crea un filtro para la consulta utilizando el correo y la contraseña
+            Bson filtro = Filters.and(Filters.eq("credencial.correo", correo), Filters.eq("credencial.contrasenia", contrasenia));
+
+            // Realiza la consulta en la colección de usuarios
+            Usuario usuarioEncontrado = COLECCION.find(filtro).first();
+
+            return usuarioEncontrado;
+        } catch (MongoDBException e) {
+            System.out.println("Error al verificar la existencia del usuario: " + e.getMessage());
+            return null;
+        }
+
     }
 
 }
